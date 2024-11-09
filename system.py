@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # name:----------Jyx
 # time:----------2023.1.15
-
+import time
 from sys import *
 from random import *
 import subprocess
@@ -25,23 +25,25 @@ def install():
         except FileNotFoundError:
             print("System Not Installed! Launching Install Program!")
 
+    testSystemInstalled()
+
     # 系统安装程序
     def InstallSystem():
         def check():
             print("Conda GNU/Linux Installer")
             # 自检(没用)
             print("checking your CPU ...")
-            run_command("ping 127.0.0.1>nul")
+            time.sleep(10)
             # 报喜讯
             print("Your CPU can install Conda Linux!")
             # 准备资源(没用)
             print("Preparing resources ...")
-            run_command("ping 127.0.0.1>nul")
+            time.sleep(5)
             # 完成
             print("Done!")
         check()
         # 延迟
-        run_command("ping 127.0.0.1>nul")
+        time.sleep(3)
         # 名字和密码
         system_name = str(input("\033[1mPick a name: \033[0m"))
         username = str(input("\033[1mPlease input a username: \033[0m"))
@@ -57,7 +59,7 @@ def install():
             return check()
         print("Saving Settings ...")
         # 保存设置
-        run_command("ping 127.0.0.1>nul")
+        time.sleep(1)
         pofile.mkdir("./usr/systemd/config/")
         try:
             with open("./usr/systemd/config/user.properties", "w", encoding="utf-8") as this:
@@ -68,7 +70,44 @@ def install():
         except FileNotFoundError:
             print("\033[91m\033[1mERROR:Create Config File ERROR: Can't find file\033[0m")
 
-        doInstall = str(input("Would you like to "))
+        def doInstallNow():
+            doInstall = str(input("Would you like to install system now ?[Y/n] "))
+            # 是否现在安装系统
+            if doInstall == "n" or doInstall == "N":
+                print("User closed, shutting down...")
+                time.sleep(2)
+                return
+            elif doInstall == "y" or doInstall == "Y":
+                print("SYSTEM WILL BE INSTALL NOW!")
+                time.sleep(5)
+                print("Create Files ...")
+                # 创建文件夹和文件
+                pofile.mkdir("./usr/Application/")
+                pofile.mkdir("./home/" + username + "/")
+                pofile.mkdir("./root/")
+                pofile.mkdir("./etc/services")
+                pofile.mkdir("./etc/network/")
+                network_config = open("./etc/network/network.conf", "w", encoding="utf-8")
+                pass # 创建文件
+                network_config.close()
+                pofile.mkdir("./dev/")
+                print("System Install SUCCESS!")
+                time.sleep(1)
+                def reboot():
+                    reboot1 = str(input("Would you like to reboot now? [Y/n] "))
+                reboot()
+                if reboot == "y" or reboot == "Y":
+                    return main()
+                elif reboot == "n" or reboot == "N":
+                    print("User disagree, shutting down ...")
+                    time.sleep(3)
+                    return
+                else:
+                    print("input error, Please try again ...")
+                    return reboot()
+            else:
+                print("input error, Please try again ...")
+                return doInstallNow()
 
 
 
@@ -76,16 +115,61 @@ def install():
 
 # 系统启动
 def system():
-    with open("./usr/systemd/config/user.properties", "r", encoding="utf-8") as this:
-        pass
+    try:
+        with open("./usr/systemd/config/user.properties", "r", encoding="utf-8") as this:
+            # 解析各行
+            content = this.readlines()
+            name = content[0].strip().split("=")[1] if "Name=" in content[0] else ""
+            username = content[1].strip().split("=")[1] if "Username=" in content[1] else ""
+            password = content[2].strip().split("=")[1] if "Username.password=" in content[2] else ""
+            root_password = content[3].strip().split("=")[1] if "Root.password=" in content[3] else ""
+
+            # 输出检查
+            # print("Name:", name)
+            # print("Username:", username)
+            # print("Password:", password)
+            # print("Root Password:", root_password)
+    except FileNotFoundError:
+        print("ERROR: File Not Found")
+
+    def SYSTEM(root = False):
+        if not root:
+            while True:
+                command = str(input(f"{username}-%-{name}:[~]-$ "))
+                if command == "shutdown":
+                    return
+                elif command == "exit":
+                    return boot()
+        elif root:
+            while True:
+                command = str(input(f"root-%-{name}:[~]-# "))
+                if command == "shutdown":
+                    return
+                elif command == "exit":
+                    return boot()
+        else:
+            print("SYSTEM ERROR")
+            time.sleep(1)
+            return
     def boot():
-        print("condaLinux ")
+        print("condaLinux system tty1")
+        test_username = str(input(name + " login: "))
+        test_password = str(input("Password: "))
+        # 错误次数
+        error = int(0)
 
+        if test_username == username and test_password == password:
+            SYSTEM(root=False)
+        elif test_username != username or test_password != password:
+            print("ERROR, try again ...")
+            error += 1
+            if error == 10:
+                print("Can't Login, shutting down ...")
+                time.sleep(3)
+                return
+        elif test_username == "root" and test_password == root_password:
+            SYSTEM(root = True)
     boot()
-    def SYSTEM():
-        pass
-
-    SYSTEM()
 
 # 主函数
 def main():
