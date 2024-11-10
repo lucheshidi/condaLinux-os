@@ -29,6 +29,8 @@ def install():
 
     # 系统安装程序
     def InstallSystem():
+        global var
+
         def check():
             print("Conda GNU/Linux Installer")
             # 自检(没用)
@@ -65,8 +67,10 @@ def install():
 
         input_root_password_v = str(input("Would you like to set \"root\" user password?[Y/n] "))
         if input_root_password_v == "y" or input_root_password_v == "Y":
+            var = "a"
             input_root_password()
         elif input_root_password_v == "n" or input_root_password_v == "N":
+            var = "w"
             print("\033[0mUser not want to input, next step ...")
         else:
             print(f"\033[91m\033[1mInput ERROR: Unknown input: {input_root_password_v}")
@@ -74,7 +78,7 @@ def install():
         # 保存设置
         run_command("ping 127.0.0.1>nul")
         try:
-            with open("./usr/systemd/config/user.properties", "a", encoding="utf-8") as this:
+            with open("./usr/systemd/config/user.properties", var, encoding="utf-8") as this:
                 this.write("Name=" + system_name + "\n")
                 this.write("Username=" + username + "\n")
         except FileNotFoundError:
