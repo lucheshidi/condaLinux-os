@@ -52,14 +52,23 @@ def install():
         if password != Verify_password: # 密码不对
             print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
             return check()
-        root_password = str(input("\033[1mPlease input a password for root: "))
-        Verify_root_password = str(input("\033[1mVerify: "))
-        if root_password != Verify_root_password: # 梅开二度
-            print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
-            return check()
-        print("Saving Settings ...")
+        def input_root_password():
+            root_password = str(input("\033[1mPlease input a password for root: "))
+            Verify_root_password = str(input("\033[1mVerify: "))
+            if root_password != Verify_root_password:  # 梅开二度
+                print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
+                return check()
+
+        input_root_password_v = str(input("Would you like to set \"root\" user password?[Y/n] "))
+        if input_root_password_v == "y" or input_root_password_v == "Y":
+            input_root_password()
+        elif input_root_password_v == "n" or input_root_password_v == "N":
+            print("User not want to input, next step ...")
+        else:
+            print(f"Input ERROR: Unknown input: {input_root_password_v}")
+        print("\033[0mSaving Settings ...")
         # 保存设置
-        time.sleep(1)
+        run_command("ping 127.0.0.1>nul")
         pofile.mkdir("./usr/systemd/config/")
         try:
             with open("./usr/systemd/config/user.properties", "w", encoding="utf-8") as this:
@@ -71,7 +80,7 @@ def install():
             print("\033[91m\033[1mERROR:Create Config File ERROR: Can't find file\033[0m")
 
         def doInstallNow():
-            doInstall = str(input("Would you like to install system now ?[Y/n] "))
+            doInstall = str(input("\033[0mWould you like to install system now ?[Y/n] "))
             # 是否现在安装系统
             if doInstall == "n" or doInstall == "N":
                 print("User closed, shutting down...")
@@ -96,9 +105,9 @@ def install():
                 def reboot():
                     reboot1 = str(input("Would you like to reboot now? [Y/n] "))
                 reboot()
-                if reboot == "y" or reboot == "Y":
+                if reboot1 == "y" or reboot == "Y":
                     return main()
-                elif reboot == "n" or reboot == "N":
+                elif reboot1 == "n" or reboot == "N":
                     print("User disagree, shutting down ...")
                     time.sleep(3)
                     return
@@ -108,9 +117,7 @@ def install():
             else:
                 print("input error, Please try again ...")
                 return doInstallNow()
-
-
-
+        doInstallNow()
     InstallSystem()
 
 # 系统启动
