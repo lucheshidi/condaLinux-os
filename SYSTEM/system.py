@@ -5,6 +5,7 @@ import time
 from sys import *
 from random import *
 import subprocess
+import PSCM
 
 def run_command(command):
     result = subprocess.run(command, shell=True, text=True)
@@ -170,6 +171,8 @@ def system():
             print("SYSTEM ERROR")
             time.sleep(1)
             return
+        
+    # 系统引导
     def boot():
         print("condaLinux system tty1")
         test_username = str(input(name + " login: "))
