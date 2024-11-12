@@ -44,6 +44,10 @@ def install():
             # 完成
             print("Done!")
         check()
+        # 创建用户信息配置文件
+        pofile.mkdir("./usr/systemd/config")
+        with open("./usr/systemd/config/user.properties", mode="w", encoding="utf-8") as this:
+            pass # 不要动
         # 延迟
         time.sleep(3)
         # 名字和密码
@@ -61,29 +65,32 @@ def install():
                 print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
                 return check()
             pofile.mkdir("./usr/systemd/config/")
-            with open("./usr/systemd/config/user.properties", "w", encoding="utf-8") as this:
-                this.write("Username.password=" + password + "\n")
-                this.write("Root.password=" + root_password + "\n")
 
         input_root_password_v = str(input("Would you like to set \"root\" user password?[Y/n] "))
         if input_root_password_v == "y" or input_root_password_v == "Y":
-            var = "a"
+            time.sleep(3)
+            try:
+                with open("./usr/systemd/config/user.properties", mode="a", encoding="utf-8") as this:
+                    this.write("Name=" + system_name + "\n")
+                    this.write("Username=" + username + "\n")
+            except FileNotFoundError:
+                print("\033[91m\033[1mERROR:Create Config File ERROR: Can't find file\033[0m")
+
             input_root_password()
         elif input_root_password_v == "n" or input_root_password_v == "N":
-            var = "w"
+            time.sleep(3)
+            try:
+                with open("./usr/systemd/config/user.properties", mode="a", encoding="utf-8") as this:
+                    this.write("Name=" + system_name + "\n")
+                    this.write("Username=" + username + "\n")
+            except FileNotFoundError:
+                print("\033[91m\033[1mERROR:Create Config File ERROR: Can't find file\033[0m")
+
             print("\033[0mUser not want to input, next step ...")
         else:
             print(f"\033[91m\033[1mInput ERROR: Unknown input: {input_root_password_v}")
         print("\033[0mSaving Settings ...")
         # 保存设置
-        run_command("ping 127.0.0.1>nul")
-        try:
-            with open("./usr/systemd/config/user.properties", var, encoding="utf-8") as this:
-                this.write("Name=" + system_name + "\n")
-                this.write("Username=" + username + "\n")
-        except FileNotFoundError:
-            print("\033[91m\033[1mERROR:Create Config File ERROR: Can't find file\033[0m")
-
         def doInstallNow():
             doInstall = str(input("\033[0mWould you like to install system now ?[Y/n] "))
             # 是否现在安装系统
@@ -109,16 +116,16 @@ def install():
                 time.sleep(1)
                 def reboot():
                     reboot1 = str(input("Would you like to reboot now? [Y/n] "))
+                    if reboot1 == "y" or reboot == "Y":
+                        return main()
+                    elif reboot1 == "n" or reboot == "N":
+                        print("User disagree, shutting down ...")
+                        time.sleep(3)
+                        return
+                    else:
+                        print("input error, Please try again ...")
+                        return reboot()
                 reboot()
-                if reboot1 == "y" or reboot == "Y":
-                    return main()
-                elif reboot1 == "n" or reboot == "N":
-                    print("User disagree, shutting down ...")
-                    time.sleep(3)
-                    return
-                else:
-                    print("input error, Please try again ...")
-                    return reboot()
             else:
                 print("input error, Please try again ...")
                 return doInstallNow()

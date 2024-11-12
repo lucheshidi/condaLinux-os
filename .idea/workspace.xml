@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edf6cb7b-d284-4120-8dee-fe6b3e488d06" name="更改" comment="init recorded">
-      <change afterPath="$PROJECT_DIR$/remove files.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system.py" beforeDir="false" afterPath="$PROJECT_DIR$/system.py" afterDir="false" />
     </list>
@@ -186,7 +185,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731230416714</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="init recorded">
+      <option name="closed" value="true" />
+      <created>1731232682889</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731232682889</updated>
+    </task>
+    <task id="LOCAL-00007" summary="init recorded">
+      <option name="closed" value="true" />
+      <created>1731232806372</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731232806372</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
