@@ -5,8 +5,9 @@ import time
 from sys import *
 from random import *
 import subprocess
+import platform
+import shutil
 
-import libs.PSCP
 from libs.PSCP import *
 
 def run_command(command):
@@ -18,47 +19,93 @@ run_command("python -m pip install pofile>nul")
 
 import pofile
 
+# lib
+class PSCP(object):
+
+    def run_command(command):
+        result = subprocess.run(command, shell=True, text=True)
+        return result
+
+    # run_command("pip install --upgrade pip>")
+    # run_command("pip install psutil>")
+    # run_command("pip install shutil")
+
+    import psutil
+
+    mem = psutil.virtual_memory()
+    path = str(os.getcwd())
+
+    # print ver
+    def printVer(self):
+        # print("System Check Program v1.15.33")
+        # print("Preparing to check ...")
+        time.sleep()
+
+    # check cpu
+    def cpuChecker(self, best_cpu, worst_cpu):
+        machine_cpu = platform.processor()
+        if best_cpu in machine_cpu or worst_cpu in machine_cpu:
+            return False
+        else:
+            return True
+
+    # check Memory
+    def memoryChecker(self, mix=2):
+        total_memory = mem.total / (1024 ** 3)
+        used_memory = mem.used / (1024 ** 3)
+        free_memory = mem.available / (1024 ** 3)
+
+        if mix <= free_memory:
+            return True
+
+        else:
+            return False
+
+    # check disk
+    def diskChecker(self, mix=10):
+
+        # 定义 GB 的大小
+        gb = 1024 ** 3
+
+        # 获取磁盘使用情况
+        total_b, used_b, free_b = shutil.disk_usage('E:')
+
+        # 打印结果
+        total = float(format(total_b / gb))
+        used = float(format(used_b / gb))
+        free = float(format(free_b / gb))
+
+        if mix <= free:
+            return True
+
+        else:
+            return False
+
+    diskChecker(True)
+
 # 系统安装
-def install():
-    def testSystemInstalled():
+class install(object):
+    def __init__(self):
+        self.__init__()
+
+    def testSystemInstalled(self):
         try:
             with open("./usr/systemd/configs/installed.conf") as one:
-                pass # 检测系统文件
+                return True # 检测系统文件
         except FileNotFoundError:
             print("System Not Installed! Launching Install Program!")
+            return False
 
-    testSystemInstalled()
+    testSystemInstalled(self=True)
 
     # 系统安装程序
-    def InstallSystem():
+    def InstallSystem(self):
         global var
 
         # 创建依赖库
-        def createLibs():
-            pofile.mkdir("./libs/PSCP")
-            try:
-                with open("./libs/PSCP/__init__.py", "w", encoding="utf-8") as this:
-                    this.write("""from sys import *
-from random import *
-import platform
-import os
-
-path = str(os.getcwd())
-
-# check cpu
-def cpuChecker(cpu):
-    machine_cpu = platform.processor()
-    print(machine_cpu)
-    return machine_cpu
-
-cpuChecker("i5")
-
-# check Memory
-def memoryChecker(max, mix):
-    pass""")
-
-                with open("./libs/PSCP/LICENSE", "w", encoding="utf-8") as this:
-                    this.write("""Apache License
+        try:
+            with open("./LICENSE", "w", encoding="utf-8") as this:
+                this.write("""Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
@@ -259,8 +306,8 @@ def memoryChecker(max, mix):
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.""")
-            except FileNotFoundError:
-                print("ERROR: Install Program ERROR")
+        except FileNotFoundError:
+            print("ERROR: Install Program ERROR")
 
 
         # 系统自检
@@ -270,7 +317,7 @@ def memoryChecker(max, mix):
             print("checking your CPU ...")
             # time.sleep(10)
             # # 报喜讯
-            success = bool(libs.PSCP.cpuChecker("Intel64", "Intel32"))
+            success = bool(PSCP.cpuChecker(True, "Intel64", "Intel32"))
             if success:
                 print("Your CPU can install Conda Linux!")
             else:
@@ -288,18 +335,18 @@ def memoryChecker(max, mix):
         # 延迟
         time.sleep(3)
         # 名字和密码
-        system_name = str(input("\033[1mPick a name: \033[0m"))
-        username = str(input("\033[1mPlease input a username: \033[0m"))
-        password = str(input("\033[1mPlease input a password: \033[0m"))
-        Verify_password = str(input("\033[1mVerify: "))
+        system_name = str(input("Pick a name----------------: "))
+        username = str(input("Please input a username----: "))
+        password = str(input("Please input a password----: "))
+        Verify_password = str(input("Verify---------------------: "))
         if password != Verify_password: # 密码不对
-            print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
+            print("ERROR: Password Error: password and verify not the same!")
             return check()
         def input_root_password():
-            root_password = str(input("\033[1mPlease input a password for root: "))
-            Verify_root_password = str(input("\033[1mVerify: "))
+            root_password = str(input("Please input a password for root----: "))
+            Verify_root_password = str(input("Verify------------------------------: "))
             if root_password != Verify_root_password:  # 梅开二度
-                print("\033[91m\033[1mERROR: Password Error: password and verify not the same!\033[0m")
+                print("ERROR: Password Error: password and verify not the same!")
                 return check()
             pofile.mkdir("./usr/systemd/config/")
 
@@ -336,25 +383,26 @@ def memoryChecker(max, mix):
                 time.sleep(2)
                 return
             elif doInstall == "y" or doInstall == "Y":
-                print("SYSTEM WILL BE INSTALL NOW!")
-                time.sleep(5)
-                print("Create Files ...")
-                # 创建文件夹和文件
-                pofile.mkdir("./usr/Application/")
-                pofile.mkdir("./home/" + username + "/")
-                pofile.mkdir("./root/")
-                pofile.mkdir("./etc/services")
-                pofile.mkdir("./etc/network/")
-                network_config = open("./etc/network/network.conf", "w", encoding="utf-8")
-                pass # 创建文件
-                network_config.close()
-                pofile.mkdir("./dev/")
-                print("System Install SUCCESS!")
-                time.sleep(1)
+                def install():
+                    print("SYSTEM WILL BE INSTALL NOW!")
+                    run_command("ping 127.0.0.1>nul")
+                    print("Create Files ...")
+                    # 创建文件夹和文件
+                    pofile.mkdir("./usr/Application/")
+                    pofile.mkdir("./home/" + username + "/")
+                    pofile.mkdir("./root/")
+                    pofile.mkdir("./etc/services")
+                    pofile.mkdir("./etc/network/")
+                    network_config = open("./etc/network/network.conf", "w", encoding="utf-8")
+                    pass # 创建文件
+                    network_config.close()
+                    pofile.mkdir("./dev/")
+                    print("System Install SUCCESS!")
+                    time.sleep(1)
                 def reboot():
                     reboot1 = str(input("Would you like to reboot now? [Y/n] "))
                     if reboot1 == "y" or reboot == "Y":
-                        return main()
+                        return
                     elif reboot1 == "n" or reboot == "N":
                         print("User disagree, shutting down ...")
                         time.sleep(3)
@@ -367,15 +415,18 @@ def memoryChecker(max, mix):
                 print("input error, Please try again ...")
                 return doInstallNow()
         doInstallNow()
-    InstallSystem()
+    InstallSystem(True)
 
 # 系统启动
-def system():
+class system(object):
+    def __init__(self):
+        self.__init__()
+
     try:
         with open("./usr/systemd/config/user.properties", "r", encoding="utf-8") as this:
             # 解析各行
             content = this.readlines()
-            name = content[0].strip().split("=")[1] if "Name=" in content[0] else ""
+            # name = content[0].strip().split("=")[1] if "Name=" in content[0] else ""
             username = content[1].strip().split("=")[1] if "Username=" in content[1] else ""
             password = content[2].strip().split("=")[1] if "Username.password=" in content[2] else ""
             root_password = content[3].strip().split("=")[1] if "Root.password=" in content[3] else ""
@@ -388,9 +439,9 @@ def system():
     except FileNotFoundError:
         print("ERROR: File Not Found")
     except IndexError:
-        print("IndexError")
+        print("ERROR: Index Error")
 
-    def SYSTEM(root = False):
+    def SYSTEM(self, root = False):
         if not root:
             while True:
                 command = str(input(f"{username}-%-{name}:[~]-$ "))
@@ -411,8 +462,18 @@ def system():
             return
         
     # 系统引导
-    def boot():
-        print("")
+    def boot(self):
+        try:
+            with open("./usr/systemd/config/user.properties", "r", encoding="utf-8") as this:
+                this.readline()
+        except FileNotFoundError:
+            success = install.testSystemInstalled()
+            if success:
+                install.InstallSystem()
+            else:
+                None
+        else:
+            return boot()
         print("condaLinux system tty1")
         test_username = str(input(name + " login: "))
         test_password = str(input("Password: "))
@@ -430,7 +491,7 @@ def system():
                 return
         elif test_username == "root" and test_password == root_password:
             SYSTEM(root = True)
-    boot()
+    boot(True)
 
 # 主函数
 def main():
@@ -441,5 +502,4 @@ def main():
     except FileNotFoundError:
         install()
 
-if __name__ == "__main__":
-    main()
+main()
