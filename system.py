@@ -13,8 +13,9 @@ def run_command(command):
     result = subprocess.run(command, shell=True, text=True)
     return result
 
-run_command("python -m pip install --upgrade pip>nul")
-run_command("python -m pip install pofile>nul")
+run_command("python -m pip3 install --upgrade pip>nul")
+run_command("python -m pip3 install pofile>nul")
+run_command("python -m pip3 install colorama>nul")
 
 import pofile
 
