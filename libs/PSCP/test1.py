@@ -17,5 +17,5 @@ class ProgressBar:
 
 if __name__ == '__main__':
     main = ProgressBar()
-    time_ = 10
+    time_ = 11 - 1
     main.progress(total=10)
