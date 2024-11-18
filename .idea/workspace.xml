@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edf6cb7b-d284-4120-8dee-fe6b3e488d06" name="更改" comment="init recorded">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/condaLinux-os.iml" beforeDir="false" />
+=======
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SYSTEM/etc/network/network.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SYSTEM/remove files.py" beforeDir="false" afterPath="$PROJECT_DIR$/SYSTEM/remove files.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SYSTEM/system.py" beforeDir="false" afterPath="$PROJECT_DIR$/SYSTEM/system.py" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/libs/PSCP/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/PSCP/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system.py" beforeDir="false" afterPath="$PROJECT_DIR$/system.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/SYSTEM/usr/systemd/config/user.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/PSCP/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/PSCP/__init__.py" afterDir="false" />
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +79,11 @@
   }
 }]]></component>
   <component name="RunManager" selected="Python.system">
+<<<<<<< HEAD
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
       <module name="condaLinux-os" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,6 +105,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
+    <configuration name="system" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="remove files" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="condaLinux-os" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SYSTEM" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SYSTEM/remove files.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="system" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="condaLinux-os" />
       <option name="ENV_FILES" value="" />
@@ -104,7 +143,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/system.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SYSTEM/system.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,7 +152,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
       <module name="condaLinux-os" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,11 +162,41 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SYSTEM" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+<<<<<<< HEAD
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/system.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/libs/PSCP/test.py" />
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+<<<<<<< HEAD
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="test1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
+      <module name="condaLinux-os" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/libs/PSCP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/libs/PSCP/test1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -180,19 +250,33 @@
       <method v="2" />
     </configuration>
     <list>
+<<<<<<< HEAD
       <item itemvalue="Python.__init__" />
       <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.system" />
       <item itemvalue="Python.test1" />
+=======
+      <item itemvalue="Python.system" />
+      <item itemvalue="Python.test1" />
+      <item itemvalue="Python.remove files" />
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
       <item itemvalue="Python.test" />
+      <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.system" />
+<<<<<<< HEAD
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.test1" />
+=======
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.test1" />
+        <item itemvalue="Python.remove files" />
+        <item itemvalue="Python.__init__" />
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
       </list>
     </recent_temporary>
   </component>
@@ -292,6 +376,7 @@
       <option name="project" value="LOCAL" />
       <updated>1731484873108</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00011" summary="init recorded">
       <option name="closed" value="true" />
       <created>1731507327785</created>
@@ -301,6 +386,9 @@
       <updated>1731507327785</updated>
     </task>
     <option name="localTasksCounter" value="12" />
+=======
+    <option name="localTasksCounter" value="11" />
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os, platform, ctypes
 
 def get_free_space_mb(folder):
@@ -12,3 +13,10 @@ def get_free_space_mb(folder):
 
 if __name__ == '__main__':
     print(get_free_space_mb("D:"), 'GB')
+=======
+# -*- coding:utf-8 -*-
+# name:----------Jyx
+# time:----------2023.1.15
+
+import SCM
+>>>>>>> 22cc729e87fe7714565ee99ac764593f7b14c01b
